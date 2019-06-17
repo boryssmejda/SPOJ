@@ -27,5 +27,5 @@ class FileReader{
     void openFile();
     void loadLines();
     int deleteComments();
-
+    void saveToFile(std::string filename);
 };

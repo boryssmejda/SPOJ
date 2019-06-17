@@ -106,8 +106,10 @@ void FileReader::loadLines(){
   sourceCode = std::move(tmp);
 
   int currentLine = 0;
-  while(std::getline(inFile, sourceCode[currentLine])){
-    sourceCode[currentLine++] += "\n";
+  std::string line;
+  while(std::getline(inFile, line)){
+
+    sourceCode[currentLine++] += (line+"\n");
   }
 
 }
@@ -123,4 +125,13 @@ int FileReader::deleteComments(){
   deletedComments += deleteMultiLineComments();
 
   return deletedComments;
+}
+
+
+void FileReader::saveToFile(std::string filename){
+
+    std::ofstream outFile(filename);
+    outFile << sourceCodeToBeProcessed;
+    outFile.close();
+
 }
