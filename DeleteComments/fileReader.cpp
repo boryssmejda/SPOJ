@@ -36,21 +36,39 @@ int FileReader::deleteSingleLineComments(){
 
 int FileReader::deleteMultiLineComments(){
 
+  while(true){
+    size_t foundBegin = sourceCodeToBeProcessed.find("/*");
+    if (foundBegin != std::string::npos)
+      std::cout << "First occurrence is " << foundBegin << std::endl;
+    else
+      break;
+
+    int counter = 0;
+    while(true){
+
+      if(sourceCodeToBeProcessed.at(foundBegin) == '*'){
+        if(sourceCodeToBeProcessed.at(foundBegin+1) == '/'){
+          sourceCodeToBeProcessed.erase(sourceCodeToBeProcessed.begin() + foundBegin, sourceCodeToBeProcessed.begin() + foundBegin+2);
+          break;
+        }
+      }
+
+      sourceCodeToBeProcessed.erase(sourceCodeToBeProcessed.begin() + foundBegin);
+    }
+  }
+
+    std::cout<<sourceCodeToBeProcessed<<std::endl;
     return 0;
 }
 
-void FileReader::convertStringArrayToVector(){
+void FileReader::convertStringArrayToString(){
 
   for(int row = 0; row < nrLinesInTheFile; row++){
 
     for(int indexElement = 0; indexElement < sourceCode[row].length(); indexElement++){
       std::string toAdd(1,sourceCode[row].at(indexElement));
-      finalSourceCode.push_back(toAdd);
+      sourceCodeToBeProcessed += toAdd;
     }
-  }
-
-  for(std::string s : finalSourceCode){
-    std::cout << s;
   }
 
 }
@@ -100,7 +118,7 @@ int FileReader::deleteComments(){
 
   deletedComments += deleteSingleLineComments();
 
-  convertStringArrayToVector();
+  convertStringArrayToString();
 
   deletedComments += deleteMultiLineComments();
 

@@ -13,11 +13,12 @@ class FileReader{
     std::ifstream inFile;
     int nrLinesInTheFile;
     std::unique_ptr<std::string[]> sourceCode;
-    std::vector<std::string> finalSourceCode;
+    std::string sourceCodeToBeProcessed;
+    //std::vector<std::string> finalSourceCode;
     int countTheLines();
     int deleteSingleLineComments();
     int deleteMultiLineComments();
-    void convertStringArrayToVector();
+    void convertStringArrayToString();
 
   public:
     FileReader(std::string filename);
