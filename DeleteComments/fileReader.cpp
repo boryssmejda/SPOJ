@@ -17,7 +17,43 @@ int FileReader::countTheLines(){
         return number_of_lines;
 }
 
+int FileReader::deleteSingleLineComments(){
 
+  int commentsDeleted = 0;
+
+    for(int i = 0; i < nrLinesInTheFile; i++){
+
+      size_t found = sourceCode[i].find("//");
+      if (found != std::string::npos){
+          sourceCode[i].erase(sourceCode[i].begin()+ found, sourceCode[i].end()-1);
+          commentsDeleted++;
+      }
+
+    }
+
+    return commentsDeleted;
+}
+
+int FileReader::deleteMultiLineComments(){
+
+    return 0;
+}
+
+void FileReader::convertStringArrayToVector(){
+
+  for(int row = 0; row < nrLinesInTheFile; row++){
+
+    for(int indexElement = 0; indexElement < sourceCode[row].length(); indexElement++){
+      std::string toAdd(1,sourceCode[row].at(indexElement));
+      finalSourceCode.push_back(toAdd);
+    }
+  }
+
+  for(std::string s : finalSourceCode){
+    std::cout << s;
+  }
+
+}
 
 /*PUBLIC METHODS ====================================*/
 FileReader::FileReader(std::string filename){
@@ -56,4 +92,17 @@ void FileReader::loadLines(){
     sourceCode[currentLine++] += "\n";
   }
 
+}
+
+int FileReader::deleteComments(){
+
+  int deletedComments = 0;
+
+  deletedComments += deleteSingleLineComments();
+
+  convertStringArrayToVector();
+
+  deletedComments += deleteMultiLineComments();
+
+  return deletedComments;
 }

@@ -7,6 +7,7 @@ int main(){
   FileReader fr("code1.txt");
   fr.openFile();
   fr.loadLines();
-  
+  fr.deleteComments();
+
   return 0;
 }
