@@ -5,13 +5,17 @@ namespace {
 
 	class NumberConverterTest : public ::testing::Test {
 	protected:
+
+		NumberConverterTest(){}
+		~NumberConverterTest() override{}
+
 		void SetUp() override {
 			n1 = NumberConverter(10, 2, std::string("231"));
 			n2 = NumberConverter(15, 10, std::string("ABC"));
 			n3 = NumberConverter(36, 2, std::string("XYZ"));
 		}
 
-		// void TearDown() override {}
+		 void TearDown() override {}
 
 		NumberConverter n1;
 		NumberConverter n2;
@@ -23,11 +27,11 @@ namespace {
 	}
 
 	TEST_F(NumberConverterTest, fromBase15to10) {
-
+		EXPECT_EQ(n2.convertNumber(), "2427");
 	}
 
 	TEST_F(NumberConverterTest, fromBase36to2) {
-
+		EXPECT_EQ(n3.convertNumber(), "1010101111111011");
 	}
 
 }

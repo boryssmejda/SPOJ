@@ -21,6 +21,7 @@ private:
 public:
 	NumberConverter(int t_fromBase, int t_toBase, std::string t_number);
 	std::string convertNumber();
+	NumberConverter(){}
 };
 
 #endif // ! NUMBER_CONVERTER
