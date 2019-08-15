@@ -40,3 +40,6 @@ set_target_properties(number_converter
   PRIVATE
     ${flags}
   )
+  
+  add_subdirectory(test)
+  
