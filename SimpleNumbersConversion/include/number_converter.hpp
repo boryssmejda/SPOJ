@@ -1,0 +1,4 @@
+#ifndef  NUMBER_CONVERTER
+#define  NUMBER_CONVERTER
+
+#endif // ! NUMBER_CONVERTER
