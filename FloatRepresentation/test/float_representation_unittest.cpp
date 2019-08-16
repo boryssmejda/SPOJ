@@ -1,37 +1,40 @@
 #include <gtest/gtest.h>
-#include "number_converter.hpp"
+#include "floatRepresentation.hpp"
 
 namespace {
 
-	class NumberConverterTest : public ::testing::Test {
+	class FloatRepresentationTest: public ::testing::Test {
 	protected:
 
-		NumberConverterTest(){}
-		~NumberConverterTest() override{}
+		FloatRepresentationTest(){}
+		~FloatRepresentationTest() override {}
 
 		void SetUp() override {
-			n1 = NumberConverter(10, 2, std::string("231"));
-			n2 = NumberConverter(15, 10, std::string("ABC"));
-			n3 = NumberConverter(36, 2, std::string("XYZ"));
+			f1 = FloatRepresentation(1.0f);
+			f2 = FloatRepresentation(-1.0f);
+			f3 = FloatRepresentation(0.0f);
+			f4 = FloatRepresentation(123.125f);
+			f5 = FloatRepresentation(-345.0f);
 		}
 
 		 void TearDown() override {}
 
-		NumberConverter n1;
-		NumberConverter n2;
-		NumberConverter n3;
+		 FloatRepresentation f1, f2 , f3, f4, f5;
+
 	};
 
-	TEST_F(NumberConverterTest, from10to2) {
-		EXPECT_EQ(n1.convertNumber(), "11100111");
+	TEST_F(FloatRepresentationTest, trivialCases) {
+		EXPECT_EQ(f1.getFloatHexRepresentation(), "3f 80 0 0");
+		EXPECT_EQ(f2.getFloatHexRepresentation(), "bf 80 0 0");
+		EXPECT_EQ(f3.getFloatHexRepresentation(), "0 0 0 0");
 	}
 
-	TEST_F(NumberConverterTest, fromBase15to10) {
-		EXPECT_EQ(n2.convertNumber(), "2427");
+	TEST_F(FloatRepresentationTest, positiveFloat) {
+		EXPECT_EQ(f4.getFloatHexRepresentation(), "42 f6 40 0");
 	}
 
-	TEST_F(NumberConverterTest, fromBase36to2) {
-		EXPECT_EQ(n3.convertNumber(), "1010101111111011");
+	TEST_F(FloatRepresentationTest, negativeFloat) {
+		EXPECT_EQ(f5.getFloatHexRepresentation() , "c3 ac 80 0");
 	}
 
 }
