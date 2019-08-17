@@ -1,4 +1,4 @@
-#include "number_converter.hpp"
+#include "RomanAddition.hpp"
 #include <iostream>
 #include <vector>
 
@@ -6,16 +6,16 @@ int main() {
 
 	int nrNumbers;
 	std::cin >> nrNumbers;
-	std::vector<NumberConverter> numbersToBeConverted;
+	std::vector<RomanNumber> resultsOfAddition(nrNumbers);
+
 	for (int i = 0; i < nrNumbers; i++) {
-		std::string num;
-		int baseFrom, baseTo;
-		std::cin >> num >> baseFrom >> baseTo;
-		NumberConverter n(baseFrom, baseTo, num);
-		numbersToBeConverted.push_back(n);
+		RomanNumber first, second;
+		std::cin >> first >> second;
+		resultsOfAddition[i] = first + second;
 	}
 
-	for (NumberConverter n : numbersToBeConverted) {
-		std::cout << n.convertNumber() << std::endl;
-	}
+	for (RomanNumber r : resultsOfAddition)
+		std::cout << r;
+
+	
 }

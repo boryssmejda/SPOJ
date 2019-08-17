@@ -1,27 +1,39 @@
-#ifndef  NUMBER_CONVERTER
-#define  NUMBER_CONVERTER
-
 #include <vector>
+#include <map>
 #include <iostream>
 #include <string>
-#include <array>
-#include <algorithm>
 
-class NumberConverter {
+class RomanNumber {
 private:
-	std::array<std::string, 36> digits
-	{ "0", "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8", "9" , "A" , "B" , "C" , "D", "E", "F" , "G" , "H" , "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-	std::string m_numberToBeConverted;
-	std::string m_convertedNumber;
-	int m_convertFromBase, m_convertToBase;
+	const std::map<std::string, int> dictionary = {
+		{"I" , 1},
+		{"IV" , 4},
+		{"V", 5},
+		{"IX", 9},
+		{"X", 10},
+		{"XL", 40},
+		{"L", 50},
+		{"XC", 90},
+		{"C", 100},
+		{"CD", 400},
+		{"D", 500},
+		{"CM", 900},
+		{"M", 1000}
+	};
 
-
-	std::string convertToTargetBase(unsigned long long t_base10Representation);
+	int decimalForm;
+	std::string romanNumber;
+	
+	void toDecimal();
+	std::string toRoman();
 
 public:
-	NumberConverter(int t_fromBase, int t_toBase, std::string t_number);
-	std::string convertNumber();
-	NumberConverter(){}
-};
+	RomanNumber(std::string roman);
+	RomanNumber() : decimalForm{ 0 }, romanNumber{ "" }{}
+	RomanNumber& operator = (const RomanNumber& r);
 
-#endif // ! NUMBER_CONVERTER
+	friend std::istream & operator >> (std::istream& in, RomanNumber& r);
+	friend std::ostream& operator << (std::ostream& out, RomanNumber& r);
+	friend RomanNumber operator + (RomanNumber l, RomanNumber r);
+
+};

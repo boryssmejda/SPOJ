@@ -1,41 +1,25 @@
-#include "number_converter.hpp"
+#include "RomanAddition.hpp"
 
-std::string NumberConverter::convertToTargetBase(unsigned long long t_base10Representation) {
+RomanNumber::RomanNumber(std::string roman) : decimalForm{ 0 }, romanNumber{roman} {}
 
-	if (t_base10Representation == 0) {
-		return "0";
-	}
-
-	std::string result("");
-	while (t_base10Representation > 0) {
-
-	int currentDigit = t_base10Representation % m_convertToBase;
-
-		std::string digitInTargetBase = digits[currentDigit];
-
-		result += digitInTargetBase;
-		t_base10Representation /= m_convertToBase;
-
-	}
-
-	std::reverse(result.begin(), result.end());
-	return result;
-}
-
-NumberConverter::NumberConverter(int t_fromBase, int t_toBase, std::string t_number)
-		:m_convertFromBase(t_fromBase), m_convertToBase(t_toBase),
-		m_numberToBeConverted(t_number)
+RomanNumber& RomanNumber::operator=(const RomanNumber& r)
 {
-	m_convertedNumber = "";
+	return *this;
 }
 
-std::string NumberConverter::convertNumber() {
-
-	unsigned long long base10Representation = std::stoull(m_numberToBeConverted, nullptr, m_convertFromBase);
-
-	m_convertedNumber = convertToTargetBase(base10Representation);
-
-	return m_convertedNumber;
+std::istream& operator>>(std::istream& in, RomanNumber& r)
+{
+	in >> r.romanNumber;
+	return in;
 }
 
+std::ostream& operator<<(std::ostream& out, RomanNumber& r)
+{
+	out << r.romanNumber << std::endl;
+	return out;
+}
 
+RomanNumber operator+(RomanNumber l, RomanNumber r)
+{
+	return RomanNumber("X");
+}
