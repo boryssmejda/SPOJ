@@ -1,4 +1,4 @@
-#include "..\include\floatRepresentation.hpp"
+#include "floatRepresentation.hpp"
 
 FloatRepresentation::FloatRepresentation(float num): number(num), completeFloatRepresentation(""){}
 
