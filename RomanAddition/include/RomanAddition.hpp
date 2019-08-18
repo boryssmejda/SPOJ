@@ -6,30 +6,34 @@
 class RomanNumber {
 private:
 	const std::map<std::string, int> dictionary = {
-		{"I" , 1},
-		{"IV" , 4},
-		{"V", 5},
-		{"IX", 9},
-		{"X", 10},
-		{"XL", 40},
-		{"L", 50},
-		{"XC", 90},
-		{"C", 100},
-		{"CD", 400},
-		{"D", 500},
-		{"CM", 900},
-		{"M", 1000}
+		{std::string("I") , 1},
+		{std::string("IV"), 4},
+		{std::string("V"), 5},
+		{std::string("IX"), 9},
+		{std::string("X"), 10},
+		{std::string("XL"), 40},
+		{std::string("L"), 50},
+		{std::string("XC"), 90},
+		{std::string("C"), 100},
+		{std::string("CD"), 400},
+		{std::string("D"), 500},
+		{std::string("CM"), 900},
+		{std::string("M"), 1000}
 	};
-
-	int decimalForm;
-	std::string romanNumber;
 	
-	void toDecimal();
+	int m_decimalForm;
+	std::string m_romanNumber;
+	
+protected:
+	int toDecimal();
+	bool isCorrectRomanNumber();
+
 	std::string toRoman();
 
 public:
 	RomanNumber(std::string roman);
-	RomanNumber() : decimalForm{ 0 }, romanNumber{ "" }{}
+	RomanNumber(int decimal);
+	RomanNumber() : m_decimalForm{ 0 }, m_romanNumber{ "" }{}
 	RomanNumber& operator = (const RomanNumber& r);
 
 	friend std::istream & operator >> (std::istream& in, RomanNumber& r);
