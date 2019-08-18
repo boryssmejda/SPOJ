@@ -98,12 +98,16 @@ RomanNumber::RomanNumber(int decimal)
 
 RomanNumber& RomanNumber::operator=(const RomanNumber& r)
 {
+	this->m_decimalForm = r.m_decimalForm;
+	this->m_romanNumber = r.m_romanNumber;
+
 	return *this;
 }
 
 std::istream& operator>>(std::istream& in, RomanNumber& r)
 {
 	in >> r.m_romanNumber;
+	r.toDecimal();
 	return in;
 }
 
