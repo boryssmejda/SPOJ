@@ -115,7 +115,72 @@ TEST(RomanToDecimalConversion, over_1000) {
 	EXPECT_EQ(test4.toDecimal(), 3999);
 }
 
+TEST(ToRoman, below_10) {
 
+	RomanAddition_TEST t1(1);
+	EXPECT_EQ(t1.toRoman(), std::string("I"));
+
+	RomanAddition_TEST t2(2);
+	EXPECT_EQ(t2.toRoman(), std::string("II"));
+
+	RomanAddition_TEST t3(3);
+	EXPECT_EQ(t3.toRoman(), std::string("III"));
+
+	RomanAddition_TEST t4(4);
+	EXPECT_EQ(t4.toRoman(), std::string("IV"));
+
+	RomanAddition_TEST t5(5);
+	EXPECT_EQ(t5.toRoman(), std::string("V"));
+
+	RomanAddition_TEST t6(8);
+	EXPECT_EQ(t6.toRoman(), std::string("VIII"));
+
+	RomanAddition_TEST t7(9);
+	EXPECT_EQ(t7.toRoman(), std::string("IX"));
+}
+
+TEST(ToRoman, below_100) {
+
+	RomanAddition_TEST t1(18);
+	EXPECT_EQ(t1.toRoman(), std::string("XVIII"));
+
+	RomanAddition_TEST t2(48);
+	EXPECT_EQ(t2.toRoman(), std::string("XLVIII"));
+
+	RomanAddition_TEST t3(51);
+	EXPECT_EQ(t3.toRoman(), std::string("LI"));
+
+	RomanAddition_TEST t4(91);
+	EXPECT_EQ(t4.toRoman(), std::string("XCI"));
+
+	RomanAddition_TEST t5(99);
+	EXPECT_EQ(t5.toRoman(), std::string("XCIX"));
+}
+
+TEST(ToRoman, below_1000) {
+
+	RomanAddition_TEST t1(180);
+	EXPECT_EQ(t1.toRoman(), std::string("CLXXX"));
+
+	RomanAddition_TEST t2(207);
+	EXPECT_EQ(t2.toRoman(), std::string("CCVII"));
+
+	RomanAddition_TEST t3(251);
+	EXPECT_EQ(t3.toRoman(), std::string("CCLI"));
+
+	RomanAddition_TEST t4(291);
+	EXPECT_EQ(t4.toRoman(), std::string("CCXCI"));
+
+	RomanAddition_TEST t5(299);
+	EXPECT_EQ(t5.toRoman(), std::string("CCXCIX"));
+
+	RomanAddition_TEST t6(499);
+	EXPECT_EQ(t6.toRoman(), std::string("CDXCIX"));
+
+	RomanAddition_TEST t7(998);
+	EXPECT_EQ(t7.toRoman(), std::string("CMXCVIII"));
+
+}
 
 int main(int argc, char** argv) {
 	::testing::InitGoogleTest(&argc, argv);
