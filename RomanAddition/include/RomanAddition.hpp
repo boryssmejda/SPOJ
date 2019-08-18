@@ -2,28 +2,40 @@
 #include <map>
 #include <iostream>
 #include <string>
+#include <utility>
+#include <array>
+#include <algorithm>
 
 class RomanNumber {
 private:
-	const std::map<std::string, int> dictionary = {
-		{std::string("I") , 1},
-		{std::string("IV"), 4},
-		{std::string("V"), 5},
-		{std::string("IX"), 9},
-		{std::string("X"), 10},
-		{std::string("XL"), 40},
-		{std::string("L"), 50},
-		{std::string("XC"), 90},
-		{std::string("C"), 100},
-		{std::string("CD"), 400},
-		{std::string("D"), 500},
-		{std::string("CM"), 900},
-		{std::string("M"), 1000}
+	struct number {
+		std::string roman;
+		int decimal;
+		number(std::string s, int n): roman{s}, decimal{n}{}
+	};
+
+	const std::array<number, 13> m_dictionary = {
+		number(std::string("I") , 1),
+		number(std::string("IV"), 4),
+		number(std::string("V"), 5),
+		number(std::string("IX"), 9),
+		number(std::string("X"), 10),
+		number(std::string("XL"), 40),
+		number(std::string("L"), 50),
+		number(std::string("XC"), 90),
+		number(std::string("C"), 100),
+		number(std::string("CD"), 400),
+		number(std::string("D"), 500),
+		number(std::string("CM"), 900),
+		number(std::string("M"), 1000)
 	};
 	
 	int m_decimalForm;
 	std::string m_romanNumber;
 	
+	std::string convertCurrentDigitToRoman(int num);
+	std::pair<std::string, int> findRomanNumberNotBiggerThanCurrent(int number);
+
 protected:
 	int toDecimal();
 	bool isCorrectRomanNumber();
@@ -35,6 +47,7 @@ public:
 	RomanNumber(int decimal);
 	RomanNumber() : m_decimalForm{ 0 }, m_romanNumber{ "" }{}
 	RomanNumber& operator = (const RomanNumber& r);
+
 
 	friend std::istream & operator >> (std::istream& in, RomanNumber& r);
 	friend std::ostream& operator << (std::ostream& out, RomanNumber& r);

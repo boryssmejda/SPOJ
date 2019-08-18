@@ -7,9 +7,10 @@ class RomanAddition_TEST : private RomanNumber{
 public:
 
 	using RomanNumber::toDecimal;
+	using RomanNumber::toRoman;
 	RomanAddition_TEST(std::string romanNum) : RomanNumber(romanNum){}
 	RomanAddition_TEST(int decimalNum): RomanNumber(decimalNum){}
-
+	
 
 };
 
@@ -113,6 +114,8 @@ TEST(RomanToDecimalConversion, over_1000) {
 	RomanAddition_TEST test4 = RomanAddition_TEST("MMMCMXCIX");
 	EXPECT_EQ(test4.toDecimal(), 3999);
 }
+
+
 
 int main(int argc, char** argv) {
 	::testing::InitGoogleTest(&argc, argv);
