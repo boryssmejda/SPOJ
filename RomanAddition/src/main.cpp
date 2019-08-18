@@ -6,12 +6,15 @@ int main() {
 
 	int nrNumbers;
 	std::cin >> nrNumbers;
-	std::vector<RomanNumber> resultsOfAddition(nrNumbers);
+	std::vector<RomanNumber> resultsOfAddition;
 
-	for (int i = 0; i < nrNumbers; i++) {
+	while(true){
 		RomanNumber first, second;
 		std::cin >> first >> second;
-		resultsOfAddition[i] = first + second;
+		if(std::cin.eof()) {
+			break;
+		}
+		resultsOfAddition.push_back(first + second);
 	}
 
 	for (RomanNumber r : resultsOfAddition)
