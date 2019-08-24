@@ -41,5 +41,5 @@ set_target_properties(${PROJECT_NAME}
 		${flags}
   )
   
-  #add_subdirectory(test)
+  add_subdirectory(test)
   

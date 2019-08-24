@@ -47,7 +47,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ../include ../src)
 target_sources(${PROJECT_NAME}
   PRIVATE
     ${PROJECT_NAME}.cpp
-	../src/RomanAddition.cpp
+	../src/BigInteger.cpp
   )
 
 target_link_libraries(
