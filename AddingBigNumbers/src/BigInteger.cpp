@@ -38,7 +38,7 @@ std::string addBigIntegers(const BigInteger& a, const BigInteger& b)
 	int carry = 0;
 	int counter_A = length_a - 1, counter_B = length_b - 1;
 
-	while (counter_A >= 0 || counter_B >= 0) {
+	while (counter_A >= 0 || counter_B >= 0 || carry != 0) {
 
 		int digit_A = 0;
 		int digit_B = 0;
@@ -50,7 +50,7 @@ std::string addBigIntegers(const BigInteger& a, const BigInteger& b)
 			digit_B = b.m_number[counter_B--] - '0';
 
 		int currentDigit = digit_A + digit_B + carry;
-		
+
 		carry = currentDigit / 10;
 		currentDigit %= 10;
 

@@ -46,10 +46,16 @@ TEST(BigIntegerAddition, addingNumber_below1000) {
 	EXPECT_EQ(addBigIntegers(a, b), std::string("3670"));
 
 
-	BigInteger c("1500");
-	BigInteger d("500");
+	BigInteger c("900");
+	BigInteger d("900");
 
-	EXPECT_EQ(addBigIntegers(c, d), std::string("2000"));
+	EXPECT_EQ(addBigIntegers(c, d), std::string("1800"));
+
+
+	BigInteger e("9");
+	BigInteger f("9");
+
+	EXPECT_EQ(addBigIntegers(e, f), std::string("18"));
 }
 
 TEST(BigIntegerAddition, addingNumber_huge) {
