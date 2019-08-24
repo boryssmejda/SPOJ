@@ -1,24 +1,23 @@
-#include "RomanAddition.hpp"
+#include <BigInteger.hpp>
 #include <iostream>
 #include <vector>
 
 int main() {
 
-	int nrSets;
-	std::cin >> nrNumbers;
-	std::vector<RomanNumber> resultsOfAddition;
+	int nrSetsOfNumbers;
+	std::cin >> nrSetsOfNumbers;
+	std::vector<BigInteger> sets;
 
-	while(true){
-		RomanNumber first, second;
-		std::cin >> first >> second;
-		if(std::cin.eof()) {
-			break;
-		}
-		resultsOfAddition.push_back(first + second);
+	for (int i = 0; i < nrSetsOfNumbers; i++) {
+		std::string first, second;
+		std::cin >> first, second;
+		BigInteger a(first), b(second);
+		BigInteger result = a + b;
+		sets.push_back(result);
 	}
 
-	for (RomanNumber r : resultsOfAddition)
-		std::cout << r;
+	for (BigInteger b : sets)
+		std::cout << b;
 
 	
 }
