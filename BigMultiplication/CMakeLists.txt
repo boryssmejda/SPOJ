@@ -3,8 +3,7 @@ cmake_minimum_required(VERSION 3.11)
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
-project(BigInteger LANGUAGES CXX)
-
+project(BigMultiplier LANGUAGES CXX)
 
 if(MSVC)
 	list(APPEND flags "/W4")
@@ -24,7 +23,6 @@ set (
 	src/${PROJECT_NAME}.cpp
 )
 
-
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 set_target_properties(${PROJECT_NAME}
@@ -42,5 +40,5 @@ set_target_properties(${PROJECT_NAME}
 		${flags}
   )
   
-  add_subdirectory(test)
+ add_subdirectory(test)
   

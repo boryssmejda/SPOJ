@@ -1,0 +1,5 @@
+[requires]
+BigInteger/0.1@borys/stable
+
+[generators]
+cmake_paths
