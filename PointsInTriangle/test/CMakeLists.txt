@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 
 project(Unit_Testing)
 
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -37,18 +38,17 @@ if(NOT googletest_POPULATED)
 	endif()
 endif()
 
-add_executable(${PROJECT_NAME} "")
+add_executable(${PROJECT_NAME} Unit_Testing.cpp)
 
+#set_target_properties(Unit_Testing
+#  PROPERTIES
+#    CXX_STANDARD 11
+#    CXX_EXTENSIONS OFF
+#  )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ../include ../src)
 
-
-
-target_sources(${PROJECT_NAME}
-  PRIVATE
-    ${PROJECT_NAME}.cpp
-	../src/PointsInTriangle.cpp
-  )
+target_link_libraries(${PROJECT_NAME} PUBLIC Points)
 
 target_link_libraries(
 
@@ -56,6 +56,9 @@ target_link_libraries(
 	PRIVATE
 	gtest_main
 )
+
+
+
 
 
 enable_testing()
