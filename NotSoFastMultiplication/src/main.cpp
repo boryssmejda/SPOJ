@@ -19,7 +19,8 @@ int main() {
 		results[i] = std::make_pair(BigMultiplier(a), BigMultiplier(b));
 	}
 
-	std::vector<BigMultiplier> finalResults(numPairs);
+	std::vector<BigMultiplier> finalResults;
+	finalResults.reserve(numPairs);
 	for (int i = 0; i < numPairs; i++) {
 		finalResults[i] = results[i].first * results[i].second;
 	}

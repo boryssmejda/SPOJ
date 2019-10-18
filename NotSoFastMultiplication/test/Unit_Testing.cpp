@@ -1,60 +1,72 @@
 #include <gtest/gtest.h>
-#include "PointsInTriangle.hpp"
+#include "BigMultiplication.hpp"
 
-TEST(PointsInTriangleTest, trivialCases) {
+TEST(BigMultiplication, trivialCases) {
 
-	using Point = geometry::Point;
-	using Triangle = geometry::Triangle;
+	BigMultiplier a("1"), b("1"), c("1");
+	ASSERT_EQ( a*b,  c);
 
-	Point a(0,0), b(0,2), c(2,0), p(0,0);
-	Triangle t(a,b,c, 0);
+	a = BigMultiplier("3");
+	b = BigMultiplier("3");
+	c = BigMultiplier("9");
+	ASSERT_EQ(a * b, c);
 
-	EXPECT_EQ(std::string("E"), t.determine_exact_position(p));
-
-	p = Point(0,1);
-	EXPECT_EQ(std::string("E"), t.determine_exact_position(p));
+	a = BigMultiplier("3");
+	b = BigMultiplier("0");
+	c = BigMultiplier("0");
+	ASSERT_EQ(a * b, c);
 }
 
-TEST(PointsInTriangleTest, inside) {
+TEST(BigMultiplication, below100) {
 
-	using Point = geometry::Point;
-	using Triangle = geometry::Triangle;
+	BigMultiplier a("4"), b("5"), c("20");
+	ASSERT_EQ(a * b, c);
 
-	Point a(630, 421), b(326, 242), c(561, 432), p(478, 332);
-	Triangle t(a, b, c, 0);
+	a = BigMultiplier("11");
+	b = BigMultiplier("5");
+	c = BigMultiplier("55");
+	ASSERT_EQ(a * b, c);
 
-	EXPECT_EQ(std::string("I"), t.determine_exact_position(p));
-
-	a = Point(975, 75);
-	b = Point(324, 166);
-	c = Point(343, 28);
-	p = Point(650, 120);
-	t = Triangle(a,b,c,0);
-
-	ASSERT_EQ(std::string("I"), t.determine_exact_position(p));
+	a = BigMultiplier("9");
+	b = BigMultiplier("11");
+	c = BigMultiplier("99");
+	ASSERT_EQ(a * b, c);
 }
 
-TEST(PointsInTriangleTest, edge) {
+TEST(BigMultiplication, below_1000) {
 
-	using Point = geometry::Point;
-	using Triangle = geometry::Triangle;
+	BigMultiplier a("12"), b("12"), c("144");
+	ASSERT_EQ(a * b, c);
 
-	Point a(378, 212), b(380, 550), c(840, 735), p(379, 381);
-	Triangle t(a, b, c, 0);
+	a = BigMultiplier("20");
+	b = BigMultiplier("20");
+	c = BigMultiplier("400");
+	ASSERT_EQ(a * b, c);
 
-	EXPECT_EQ(std::string("E"), t.determine_exact_position(p));
+	a = BigMultiplier("919");
+	b = BigMultiplier("1");
+	c = BigMultiplier("919");
+	ASSERT_EQ(a * b, c);
 }
 
+TEST(BigMultiplication, over_10000) {
 
-TEST(PointsInTriangleTest, outside) {
+	BigMultiplier a("9999"), b("12345"), c("123437655");
+	ASSERT_EQ(a * b, c);
 
-	using Point = geometry::Point;
-	using Triangle = geometry::Triangle;
+	a = BigMultiplier("324");
+	b = BigMultiplier("342");
+	c = BigMultiplier("110808");
+	ASSERT_EQ(a * b, c);
+}
 
-	Point a(591, 916), b(765, 191), c(487, 490), p(678, 554);
-	Triangle t(a, b, c, 0);
+TEST(BigMultiplication, enormous) {
 
-	EXPECT_EQ(std::string("O"), t.determine_exact_position(p));
+	BigMultiplier a("12345678900987654321");
+	BigMultiplier b("99999999999999999999");
+	BigMultiplier c("1234567890098765432087654321099012345679");
+	ASSERT_EQ(a * b, c);
+
 }
 
 int main(int argc, char** argv) {
