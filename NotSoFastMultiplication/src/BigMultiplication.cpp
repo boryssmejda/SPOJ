@@ -2,16 +2,13 @@
 #include <algorithm>
 #include <array>
 #include <iterator>
-#include <thread>
 
 const BigMultiplier operator * (const BigMultiplier& t_numA, const BigMultiplier& t_numB)
 {
-	
 	std::vector<std::string> temporaryObjects;
 	int shiftBy = -1;
 	for (auto it = t_numB.m_number.rbegin(); it != t_numB.m_number.rend(); it++) {
 
-		Timer t;
 		std::string tmp = BigMultiplier::multiplyBySingleDigit(t_numA.m_number, *it);
 		BigMultiplier::shiftLeftBy(tmp, ++shiftBy);
 		temporaryObjects.push_back(std::move(tmp));
@@ -101,3 +98,4 @@ std::string BigMultiplier::add(const std::string& a, const std::string& b)
 	std::reverse(result.begin(), result.end());
 	return result;
 }
+
