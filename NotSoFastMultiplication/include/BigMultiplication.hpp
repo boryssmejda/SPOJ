@@ -9,9 +9,7 @@ protected:
 	std::string m_number;
 	static std::string multiplyBySingleDigit(const std::string& number,const char multiplyBy);
 	static void shiftLeftBy(std::string& number ,int shiftBy);
-	static BigMultiplier addAllElements(const std::vector<std::string>& allElements);
 	static std::string add(const std::string& a, const std::string& b);
-	void multiplyWithThreads(const std::string& number, const char multiplyBy, int index);
 
 public:
 	explicit BigMultiplier(const std::string& t_givenNumber): m_number{t_givenNumber}{}

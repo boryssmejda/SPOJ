@@ -1,20 +1,19 @@
 #include "BigMultiplication.hpp"
 #include <algorithm>
-#include <array>
 #include <iterator>
 
 const BigMultiplier operator * (const BigMultiplier& t_numA, const BigMultiplier& t_numB)
 {
-	std::vector<std::string> temporaryObjects;
+	std::string finalResult{ "0" };
 	int shiftBy = -1;
 	for (auto it = t_numB.m_number.rbegin(); it != t_numB.m_number.rend(); it++) {
 
 		std::string tmp = BigMultiplier::multiplyBySingleDigit(t_numA.m_number, *it);
 		BigMultiplier::shiftLeftBy(tmp, ++shiftBy);
-		temporaryObjects.push_back(std::move(tmp));
+		finalResult = BigMultiplier::add(finalResult, tmp);
 	}
 
-	return BigMultiplier::addAllElements(temporaryObjects);
+	return BigMultiplier(finalResult);
 }
 
 bool operator==(const BigMultiplier& t_numA, const BigMultiplier& t_numB)
@@ -58,16 +57,6 @@ void BigMultiplier::shiftLeftBy(std::string& number, int shiftBy)
 {
 	if(shiftBy > 0)
 		number.append(shiftBy, '0');
-}
-
-BigMultiplier BigMultiplier::addAllElements(const std::vector<std::string>& allElements)
-{
-	std::string finalAnswer{ "0" };
-	for (const auto& el : allElements) {
-		finalAnswer = add(finalAnswer, el);
-	}
-
-	return BigMultiplier(finalAnswer);
 }
 
 std::string BigMultiplier::add(const std::string& a, const std::string& b)
